@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>名前チェックツール</title>
+
+  <style>
+
+    body {
+
+      background-color: #b3e5fc; /* 水色の背景 */
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      height: 100vh;
+
+      margin: 0;
+
+      font-family: Arial, sans-serif;
+
+    }
+
+    .container {
+
+      text-align: center;
+
+    }
+
+    input {
+
+      display: block;
+
+      margin: 10px auto;
+
+      padding: 5px;
+
+      width: 200px;
+
+    }
+
+    button {
+
+      padding: 10px 20px;
+
+      background-color: #0288d1;
+
+      color: white;
+
+      border: none;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+
+    }
+
+    button:hover {
+
+      background-color: #01579b;
+
+    }
+
+    .result {
+
+      margin-top: 20px;
+
+      font-size: 18px;
+
+    }
+
+    .ng {
+
+      color: red;
+
+    }
+
+    .ok {
+
+      color: green;
+
+    }
+
+    .list {
+
+      margin-top: 20px;
+
+      font-size: 14px;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>名前チェックツール</h1>
+
+    <!-- 6つの入力欄 -->
+
+    <input type="text" id="input1" placeholder="名前1">
+
+    <input type="text" id="input2" placeholder="名前2">
+
+    <input type="text" id="input3" placeholder="名前3">
+
+    <input type="text" id="input4" placeholder="名前4">
+
+    <input type="text" id="input5" placeholder="名前5">
+
+    <input type="text" id="input6" placeholder="名前6">
+
+    <!-- 実行ボタン -->
+
+    <button onclick="checkNames()">実行</button>
+
+    <!-- 結果表示エリア -->
+
+    <div class="result" id="result"></div>
+
+    <!-- 登録済み名前リスト -->
+
+    <div class="list">
+
+      <strong>特定の名前リスト:</strong>
+
+      <span id="nameList">山田, 佐藤, 鈴木, 田中</span>
+
+    </div>
+
+  </div>
+
+
+
+  <script>
+
+    // 初期の特定の名前リスト
+
+    const specificNames = ["山田", "佐藤", "鈴木", "田中"];
+
+
+
+    function checkNames() {
+
+      const inputs = [
+
+        document.getElementById("input1").value.trim(),
+
+        document.getElementById("input2").value.trim(),
+
+        document.getElementById("input3").value.trim(),
+
+        document.getElementById("input4").value.trim(),
+
+        document.getElementById("input5").value.trim(),
+
+        document.getElementById("input6").value.trim(),
+
+      ];
+
+      
+
+      let resultMessage = "";
+
+
+
+      inputs.forEach((input, index) => {
+
+        if (input) {
+
+          if (specificNames.includes(input)) {
+
+            resultMessage += `入力欄${index + 1}: <span class="ng">NG</span><br>`;
+
+          } else {
+
+            resultMessage += `入力欄${index + 1}: <span class="ok">OK</span><br>`;
+
+          }
+
+        }
+
+      });
+
+
+
+      document.getElementById("result").innerHTML = resultMessage || "入力がありません。";
+
+    }
+
+  </script>
+
+</body>
+
+</html>
